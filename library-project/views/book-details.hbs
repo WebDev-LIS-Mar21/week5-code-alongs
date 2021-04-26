@@ -1,0 +1,34 @@
+<h1>{{book.title}}</h1>
+<hr>
+<p>Written by: {{book.author.name}}</p>
+<p>Summary: {{book.description}}</p>
+<p>Rating: {{book.rating}}</p>
+{{#if book.imageUrl}}
+  <img src={{book.imageUrl}} />
+{{/if}}
+<br>
+<a href="/books">Go to list of books</a>
+<hr>
+
+<p>Add a review</p>
+<form action="/reviews/{{book.id}}/add" method="POST">
+  <label>
+    User
+  </label>
+  <input type="text" name="user" />
+
+  <label>
+    Comment
+  </label>
+  <textarea name="comment"></textarea>
+
+  <button type="submit">Add Review</button>
+</form>
+<hr>
+{{!-- List all reviews --}}
+{{#each book.reviews}}
+  <p>{{comment}} -- {{user}}</p>
+{{/each}}
+
+
+

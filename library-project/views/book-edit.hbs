@@ -1,0 +1,29 @@
+<h1>Edit {{book.title}}</h1>
+<form action="/books/{{book.id}}/edit" method="POST">
+  <label>Title</label>
+  <input type="text" name="title" value="{{book.title}}" />
+
+  <label>Author</label>
+  {{!-- <input type="text" name="author" value="{{book.author}}" /> --}}
+  <select name="author">
+      <option value="">Choose author</option>
+    {{#each allAuthors}}
+        {{!-- name is the name of the author --}}
+         {{!-- book.author.name is the name of the book author --}}
+        {{#eq name ../book.author.name}}
+            <option value={{id}} selected>{{name}}</option>
+          {{else}}
+            <option value={{id}}>{{name}}</option>
+        {{/eq}}
+    {{/each}}
+  </select>
+  <label>Description</label>
+  <textarea type="text" name="description" cols="30" row="4" >
+    {{book.description}}
+  </textarea>
+
+  <label>Rating</label>
+  <input type="number" name="rating" value="{{book.rating}}" />
+
+  <button type="submit">Update</button>
+</form>
